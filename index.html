@@ -17,8 +17,38 @@
             <button id="clear-inputs">Clear</button>
             <button id="load-sample-data">Load sample</button>
         </div>
-        <label for="textarea-input">Enter Latin words here (or use sample):</label><br/>
+        <label for="textarea-input">Enter Latin lemmata here (or use sample):</label><br/>
         <textarea id="textarea-input"></textarea><br/>
+        <div>
+            <button id="generate-select-declensions-table">Select declensions</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <td><h3>Lemma</h3></td>
+                    <td><h3>Declension</h3></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>puella</td>
+                    <td>
+                        <label><input type="radio" name="puella" value="1st, noun, Latin-style" checked>1st, noun, Latin-style</label>
+                        <label><input type="radio" name="puella" value="1st, noun, Greek-style">1st, noun, Greek-style</label>
+                        <label><input type="radio" name="puella" value="2nd, noun, -us nominative">2nd, noun, -us nominative</label>
+                        <label><input type="radio" name="puella" value="2nd, noun, -um nominative">2nd, noun, -um nominative</label>
+                        <label><input type="radio" name="puella" value="3rd, noun, -i stem">3rd, noun, -i stem</label>
+                        <label><input type="radio" name="puella" value="3rd, noun, non-i stem">3rd, noun, non-i stem</label>
+                        <label><input type="radio" name="puella" value="4th, noun, -us nominative">4th, noun, -us nominative</label>
+                        <label><input type="radio" name="puella" value="4th, noun, -ū nominative">4th, noun, -ū nominative</label>
+                        <label><input type="radio" name="puella" value="5th, noun">5th, noun</label>
+                        <label><input type="radio" name="puella" value="1st/2nd, adjective">1st/2nd, adjective</label>
+                        <label><input type="radio" name="puella" value="3rd, adjective, one-form nominative singular">3rd, adjective, one-form nominative singular</label>
+                        <label><input type="radio" name="puella" value="3rd, adjective, two-form nominative singular">3rd, adjective, two-form nominative singular</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <div>
             <span id="text-by-decline"></span>
             <button id="decline">Decline</button><br/>
