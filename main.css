@@ -1,0 +1,24 @@
+h1 ~ h2 {
+    text-align: left;
+    font-size: 1.25rem;
+}
+
+h1 ~ p {
+    border: 0.15rem solid var(--colour6);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    word-wrap: break-word;
+}
+
+main ul {
+    padding-left: 0.25rem;
+}
+
+main li {
+    list-style: disc inside;
+}
+
+main li + li {
+    margin-top: 0.5rem;
+}
