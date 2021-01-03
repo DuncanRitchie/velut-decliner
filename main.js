@@ -30,7 +30,7 @@ const schemata = [
         "Stressed endings":   [],
     },
     {
-        "Description":        "3rd, noun, non-i stem",
+        "Description":        "3rd, noun, consonant stem",
         "Unstressed endings": ["","is"],
         "Stressed endings":   [],
     },
@@ -72,6 +72,28 @@ const getDescriptionsFromSchemata = () => {
     })
 }
 
+const getSchemaDescriptionForLemma = (lemma) => {
+    if (lemma.endsWith("a")) {
+        return "1st, noun, Latin-style";
+    }
+    if (lemma.endsWith("us")) {
+        return "2nd, noun, masculine/feminine";
+    }
+    if (lemma.endsWith("um")) {
+        return "2nd, noun, neuter";
+    }
+    if (lemma.endsWith("ūs")) {
+        return "4th, noun, -us nominative";
+    }
+    if (lemma.endsWith("ū")) {
+        return "4th, noun, -ū nominative";
+    }
+    if (lemma.endsWith("ēs")) {
+        return "5th, noun";
+    }
+    return "3rd, noun, consonant stem";
+}
+
 const getLemmataFromInput = () => {
     const lemmataArray = textareaInput.value.split(/[\s,;\.]+/);
     console.log(lemmataArray);
@@ -83,12 +105,14 @@ const generateSelectDeclensionsTable = () => {
     const descriptions = getDescriptionsFromSchemata();
     console.log(descriptions);
 
-    const generateRadio = (lemma, declensionDescription) => {
-        return `<label><input type="radio" name="${lemma}" value="${declensionDescription}">${declensionDescription}</label>`;
+    const generateRadio = (lemma, declensionDescription, checked) => {
+        return `<label><input type="radio" name="${lemma}" value="${declensionDescription}" ${checked ? "checked " : ""}>${declensionDescription}</label>`;
     }
 
     let innerHtml = "";
     lemmataArray.map(lemma => {
+        const checkedDescription = getSchemaDescriptionForLemma(lemma);
+
         innerHtml = `${innerHtml}
         <tr>
         <td>
@@ -97,7 +121,8 @@ const generateSelectDeclensionsTable = () => {
         <td>`
 
         descriptions.map(description => {
-            innerHtml = `${innerHtml}${generateRadio(lemma, description)}`;
+            const checked = description === checkedDescription;
+            innerHtml = `${innerHtml}${generateRadio(lemma, description, checked)}`;
         });
 
         innerHtml = `${innerHtml}
