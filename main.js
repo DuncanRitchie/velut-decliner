@@ -1,3 +1,5 @@
+const textareaInput = document.getElementById("textarea-input");
+const buttonGenerateSelectDeclensionsTable = document.getElementById("generate-select-declensions-table");
 const buttonDecline = document.getElementById("decline");
 
 const schemata = [
@@ -62,3 +64,11 @@ const schemata = [
         "Stressed endings":   [],
     },
 ]
+
+const getLemmataFromInput = () => {
+    const lemmataArray = textareaInput.value.split(/[\s,;\.]+/);
+    console.log(lemmataArray);
+    return lemmataArray;
+}
+
+buttonGenerateSelectDeclensionsTable.addEventListener("click", getLemmataFromInput);
