@@ -8,61 +8,73 @@ const schemata = [
         "Description":        "1st, noun, Latin-style",
         "Unstressed endings": ["a","ae","am","ā","ās","īs"],
         "Stressed endings":   ["ārum"],
+        "Lemma ending":       "a",
     },
     {
         "Description":        "1st, noun, Greek-style",
         "Unstressed endings": ["ē","ēs","ēn","ae"],
         "Stressed endings":   ["ārum"],
+        "Lemma ending":       "ē",
     },
     {
         "Description":        "2nd, noun, masculine/feminine",
         "Unstressed endings": ["us","ī","e","ō","um","ōs","īs"],
         "Stressed endings":   ["ōrum"],
+        "Lemma ending":       "us",
     },
     {
         "Description":        "2nd, noun, neuter",
         "Unstressed endings": ["um","ī","ō","um","a","īs"],
         "Stressed endings":   ["ōrum"],
-    },
-    {
-        "Description":        "3rd, noun, -i stem",
-        "Unstressed endings": ["","is"],
-        "Stressed endings":   [],
+        "Lemma ending":       "um",
     },
     {
         "Description":        "3rd, noun, consonant stem",
         "Unstressed endings": ["","is"],
         "Stressed endings":   [],
+        "Lemma ending":       "is",
+    },
+    {
+        "Description":        "3rd, noun, -i stem",
+        "Unstressed endings": ["","is"],
+        "Stressed endings":   [],
+        "Lemma ending":       "is",
     },
     {
         "Description":        "4th, noun, -us nominative",
         "Unstressed endings": ["ūs"],
         "Stressed endings":   [],
+        "Lemma ending":       "ūs",
     },
     {
         "Description":        "4th, noun, -ū nominative",
         "Unstressed endings": ["ūs"],
         "Stressed endings":   [],
+        "Lemma ending":       "ū",
     },
     {
         "Description":        "5th, noun",
         "Unstressed endings": ["em","ē","ēs"],
         "Stressed endings":   ["ēī","ērum","ēbus"],
+        "Lemma ending":       "ēs",
     },
     {
         "Description":        "1st/2nd, adjective",
         "Unstressed endings": ["us","ī","e","ō","um","ōs","a","ae","am","ā","ās","īs","ior","ē","ius"],
         "Stressed endings":   ["ārum","ōrum"],
+        "Lemma ending":       "us",
     },
     {
         "Description":        "3rd, adjective, one-form nominative singular",
         "Unstressed endings": ["","is","em","ī","e","ēs","ia","um","ibus"],
         "Stressed endings":   [],
+        "Lemma ending":       "is",
     },
     {
         "Description":        "3rd, adjective, two-form nominative singular",
         "Unstressed endings": ["","e","is","em","ī","ēs","ia","um","ibus"],
         "Stressed endings":   [],
+        "Lemma ending":       "is",
     },
 ]
 
@@ -73,23 +85,10 @@ const getDescriptionsFromSchemata = () => {
 }
 
 const getSchemaDescriptionForLemma = (lemma) => {
-    if (lemma.endsWith("a")) {
-        return "1st, noun, Latin-style";
-    }
-    if (lemma.endsWith("us")) {
-        return "2nd, noun, masculine/feminine";
-    }
-    if (lemma.endsWith("um")) {
-        return "2nd, noun, neuter";
-    }
-    if (lemma.endsWith("ūs")) {
-        return "4th, noun, -us nominative";
-    }
-    if (lemma.endsWith("ū")) {
-        return "4th, noun, -ū nominative";
-    }
-    if (lemma.endsWith("ēs")) {
-        return "5th, noun";
+    for (let i = 0; i < schemata.length; i++) {
+        if (lemma.endsWith(schemata[i]["Lemma ending"])) {
+            return schemata[i].Description;
+        }
     }
     return "3rd, noun, consonant stem";
 }
