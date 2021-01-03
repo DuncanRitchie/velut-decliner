@@ -66,6 +66,12 @@ const schemata = [
     },
 ]
 
+const getDescriptionsFromSchemata = () => {
+    return schemata.map(schema => {
+        return schema.Description;
+    })
+}
+
 const getLemmataFromInput = () => {
     const lemmataArray = textareaInput.value.split(/[\s,;\.]+/);
     console.log(lemmataArray);
@@ -74,30 +80,30 @@ const getLemmataFromInput = () => {
 
 const generateSelectDeclensionsTable = () => {
     const lemmataArray = getLemmataFromInput();
-    const lemmataCount = lemmataArray.length;
+    const descriptions = getDescriptionsFromSchemata();
+    console.log(descriptions);
+
+    const generateRadio = (lemma, declensionDescription) => {
+        return `<label><input type="radio" name="${lemma}" value="${declensionDescription}">${declensionDescription}</label>`;
+    }
+
     let innerHtml = "";
-    for (let i = 0; i < lemmataCount; i++) {
+    lemmataArray.map(lemma => {
         innerHtml = `${innerHtml}
         <tr>
         <td>
-        ${lemmataArray[i]}
+        ${lemma}
         </td>
-        <td>
-        <label><input type="radio" name="${lemmataArray[i]}" value="1st, noun, Latin-style" checked>1st, noun, Latin-style</label>
-        <label><input type="radio" name="${lemmataArray[i]}" value="1st, noun, Greek-style">1st, noun, Greek-style</label>
-        <label><input type="radio" name="${lemmataArray[i]}" value="2nd, noun, -us nominative">2nd, noun, -us nominative</label>
-        <label><input type="radio" name="${lemmataArray[i]}" value="2nd, noun, -um nominative">2nd, noun, -um nominative</label>
-        <label><input type="radio" name="${lemmataArray[i]}" value="3rd, noun, -i stem">3rd, noun, -i stem</label>
-        <label><input type="radio" name="${lemmataArray[i]}" value="3rd, noun, non-i stem">3rd, noun, non-i stem</label>
-        <label><input type="radio" name="${lemmataArray[i]}" value="4th, noun, -us nominative">4th, noun, -us nominative</label>
-        <label><input type="radio" name="${lemmataArray[i]}" value="4th, noun, -ū nominative">4th, noun, -ū nominative</label>
-        <label><input type="radio" name="${lemmataArray[i]}" value="5th, noun">5th, noun</label>
-        <label><input type="radio" name="${lemmataArray[i]}" value="1st/2nd, adjective">1st/2nd, adjective</label>
-        <label><input type="radio" name="${lemmataArray[i]}" value="3rd, adjective, one-form nominative singular">3rd, adjective, one-form nominative singular</label>
-        <label><input type="radio" name="${lemmataArray[i]}" value="3rd, adjective, two-form nominative singular">3rd, adjective, two-form nominative singular</label>
+        <td>`
+
+        descriptions.map(description => {
+            innerHtml = `${innerHtml}${generateRadio(lemma, description)}`;
+        });
+
+        innerHtml = `${innerHtml}
         </td>
-        </tr>`;
-    }
+        </tr>`;});
+
     tbody.innerHTML = innerHtml;
 }
 
