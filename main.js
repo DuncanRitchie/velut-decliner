@@ -1,3 +1,4 @@
+const buttonClearInputs = document.getElementById("clear-inputs");
 const textareaInput = document.getElementById("textarea-input");
 const buttonGenerateSelectDeclensionsTable = document.getElementById("generate-select-declensions-table");
 const tbody = document.getElementById("tbody");
@@ -138,6 +139,13 @@ const refreshDataList = () => {
     });
 }
 
+const clearInputs = () => {
+    textareaInput.value = "";
+    tbody.innerHTML = "";
+    textareaOutput.value = "";
+    clearTextMessages();
+}
+
 const generateSelectDeclensionsTable = () => {
     const lemmataArray = getLemmataFromInput();
     const descriptions = getDescriptionsFromSchemata();
@@ -183,7 +191,7 @@ const decline = () => {
     }
 
     console.log("declinedForms", declinedForms);
-    textareaOutput.textContent = declinedForms.map(object=>`${object.Form}\t${object.Lemma}`).join("\n");
+    textareaOutput.value = declinedForms.map(object=>`${object.Form}\t${object.Lemma}`).join("\n");
 }
 
 const clearTextMessages = () => {
@@ -213,6 +221,10 @@ const copyToClipboard = () => {
 
 
 refreshDataList();
+
+buttonClearInputs.addEventListener("click", ()=>{
+    clearInputs();
+});
 
 buttonGenerateSelectDeclensionsTable.addEventListener("click", () => {
     if (textareaInput.value === "") {
