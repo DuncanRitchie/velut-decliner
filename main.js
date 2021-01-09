@@ -2,8 +2,11 @@ const textareaInput = document.getElementById("textarea-input");
 const buttonGenerateSelectDeclensionsTable = document.getElementById("generate-select-declensions-table");
 const tbody = document.getElementById("tbody");
 const declensionsDataList = document.getElementById("declension-descriptions");
+const textBySelectDeclensions = document.getElementById("text-by-select-declensions");
 const buttonDecline = document.getElementById("decline");
 const textareaOutput = document.getElementById("textarea-output");
+const textByCopyToClipboard = document.getElementById("text-by-copy-to-clipboard");
+const buttonCopyToClipboard = document.getElementById("copy-to-clipboard");
 
 const schemata = [
     {
@@ -183,7 +186,60 @@ const decline = () => {
     textareaOutput.textContent = declinedForms.map(object=>`${object.Form}\t${object.Lemma}`).join("\n");
 }
 
+const clearTextMessages = () => {
+    textBySelectDeclensions.textContent = "";
+    textByCopyToClipboard.textContent = "";
+}
+
+const warnOfEmptyInput = () => {
+    clearTextMessages();
+    textBySelectDeclensions.textContent = "Nothing to decline!";
+}
+
+const warnOfEmptyOutput = () => {
+    clearTextMessages();
+    textByCopyToClipboard.textContent = "Nothing to copy or download!";
+}
+
+const copyToClipboard = () => {
+    clearTextMessages();
+    textByCopyToClipboard.textContent = "Copying to clipboard...";
+    textareaOutput.select();
+    document.execCommand("copy");
+    textByCopyToClipboard.textContent = "Copied!";
+}
+
+
+
+
 refreshDataList();
 
-buttonGenerateSelectDeclensionsTable.addEventListener("click", generateSelectDeclensionsTable);
-buttonDecline.addEventListener("click", decline);
+buttonGenerateSelectDeclensionsTable.addEventListener("click", () => {
+    if (textareaInput.value === "") {
+        warnOfEmptyInput();
+    }
+    else {
+        clearTextMessages();
+        generateSelectDeclensionsTable();
+    }
+});
+
+buttonDecline.addEventListener("click", () => {
+    if (textareaInput.value === "" || tbody.children.length === 0) {
+        warnOfEmptyInput();
+    }
+    else {
+        clearTextMessages();
+        decline()
+    };
+});
+
+buttonCopyToClipboard.addEventListener("click", () => {
+    if (textareaOutput.value === "") {
+        warnOfEmptyOutput();
+    }
+    else {
+        clearTextMessages();
+        copyToClipboard();
+    }
+});

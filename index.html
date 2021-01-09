@@ -20,6 +20,7 @@
         <label for="textarea-input">Enter Latin lemmata here (or use sample):</label><br/>
         <textarea id="textarea-input"></textarea><br/>
         <div>
+            <span id="text-by-select-declensions"></span>
             <button id="generate-select-declensions-table">Select declensions</button>
         </div>
         <table>
@@ -30,12 +31,12 @@
                 </tr>
             </thead>
             <tbody id="tbody">
-                <tr>
+                <!-- <tr>
                     <td>puella</td>
                     <td>
                         <input id="declension-input-puella" list="declension-descriptions" value="1st, noun, Latin-style"/>
                     </td>
-                </tr>
+                </tr> -->
                 <datalist id="declension-descriptions">
                     <!-- <option value="1st, noun, Latin-style"/>
                     <option value="1st, noun, Greek-style"/>
