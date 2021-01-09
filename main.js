@@ -3,6 +3,7 @@ const buttonGenerateSelectDeclensionsTable = document.getElementById("generate-s
 const tbody = document.getElementById("tbody");
 const declensionsDataList = document.getElementById("declension-descriptions");
 const buttonDecline = document.getElementById("decline");
+const textareaOutput = document.getElementById("textarea-output");
 
 const schemata = [
     {
@@ -94,6 +95,27 @@ const getSchemaDescriptionForLemma = (lemma) => {
     return "3rd, noun, consonant stem";
 }
 
+const getSchemaFromDescription = (declensionDescription) => {
+    for (let i = 0; i < schemata.length; i++) {
+        if (schemata[i].Description === declensionDescription) {
+            return schemata[i];
+        }
+    }
+}
+
+const getFormsFromLemmaAndDeclensionDescription = (lemma, declensionDescription) => {
+    let forms = [];
+
+    return forms;
+}
+
+const getStemFromLemma = (lemma, lemmaEnding) => {
+    if (lemma.endsWith(lemmaEnding)) {
+        return lemma.substr(0, lemma.length - lemmaEnding.length);
+    }
+    return lemma;
+}
+
 const getLemmataFromInput = () => {
     if (!textareaInput.value) {
         return [];
@@ -136,6 +158,32 @@ const generateSelectDeclensionsTable = () => {
     tbody.innerHTML = innerHtml;
 }
 
+const decline = () => {
+    const countLemmata = tbody.children.length;
+    let declinedForms = [];
+
+    for (let i = 0; i < countLemmata; i++) {
+        const lemma = tbody.children[i].children[0].textContent.trim();
+        const declensionDescription = tbody.children[i].children[1].children[0].value;
+        const schema = getSchemaFromDescription(declensionDescription);
+        const stem = getStemFromLemma(lemma, schema["Lemma ending"]);
+
+        schema["Unstressed endings"].map(ending => {
+            const form = `${stem}${ending}`
+            declinedForms.push({Form: form, Lemma: lemma});
+        })
+
+        schema["Stressed endings"].map(ending => {
+            const form = `${stem}${ending}`
+            declinedForms.push({Form: form, Lemma: lemma});
+        })
+    }
+
+    console.log("declinedForms", declinedForms);
+    textareaOutput.textContent = declinedForms.map(object=>`${object.Form}\t${object.Lemma}`).join("\n");
+}
+
 refreshDataList();
 
 buttonGenerateSelectDeclensionsTable.addEventListener("click", generateSelectDeclensionsTable);
+buttonDecline.addEventListener("click", decline);
