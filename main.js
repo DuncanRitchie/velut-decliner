@@ -6,6 +6,7 @@ const textBeforeTable = document.getElementById("text-before-table");
 const tbody = document.getElementById("tbody");
 const declensionsDataList = document.getElementById("declension-descriptions");
 const textBySelectDeclensions = document.getElementById("text-by-select-declensions");
+const tickboxOutputLemma = document.getElementById("output-lemma");
 const buttonDecline = document.getElementById("decline");
 const textareaOutput = document.getElementById("textarea-output");
 const textByCopyToClipboard = document.getElementById("text-by-copy-to-clipboard");
@@ -208,7 +209,13 @@ const decline = () => {
     }
 
     console.log("declinedForms", declinedForms);
-    textareaOutput.value = declinedForms.map(object=>`${object.Form}\t${object.Lemma}`).join("\n");
+
+    if (tickboxOutputLemma.checked) {
+        textareaOutput.value = declinedForms.map(object=>`${object.Form}\t${object.Lemma}`).join("\n");
+    }
+    else {
+        textareaOutput.value = declinedForms.map(object=>`${object.Form}`).join("\n");
+    }
 }
 
 const clearTextMessages = () => {
