@@ -11,6 +11,17 @@ h1 ~ p {
     word-wrap: break-word;
 }
 
+td + td {
+    width: 100%;
+}
+
+td input {
+    font-size: 0.75rem;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.25rem;
+}
+
 main ul {
     padding-left: 0.25rem;
 }

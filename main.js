@@ -1,6 +1,7 @@
 const textareaInput = document.getElementById("textarea-input");
 const buttonGenerateSelectDeclensionsTable = document.getElementById("generate-select-declensions-table");
 const tbody = document.getElementById("tbody");
+const declensionsDataList = document.getElementById("declension-descriptions");
 const buttonDecline = document.getElementById("decline");
 
 const schemata = [
@@ -94,9 +95,22 @@ const getSchemaDescriptionForLemma = (lemma) => {
 }
 
 const getLemmataFromInput = () => {
+    if (!textareaInput.value) {
+        return [];
+    }
+
     const lemmataArray = textareaInput.value.split(/[\s,;\.]+/);
     console.log(lemmataArray);
     return lemmataArray;
+}
+
+const refreshDataList = () => {
+    declensionsDataList.innerHTML = "";
+    getDescriptionsFromSchemata().map(description => {
+        const newOption = document.createElement("option");
+        newOption.value = description;
+        declensionsDataList.append(newOption);
+    });
 }
 
 const generateSelectDeclensionsTable = () => {
@@ -104,31 +118,24 @@ const generateSelectDeclensionsTable = () => {
     const descriptions = getDescriptionsFromSchemata();
     console.log(descriptions);
 
-    const generateRadio = (lemma, declensionDescription, checked) => {
-        return `<label><input type="radio" name="${lemma}" value="${declensionDescription}" ${checked ? "checked " : ""}>${declensionDescription}</label>`;
-    }
-
     let innerHtml = "";
     lemmataArray.map(lemma => {
-        const checkedDescription = getSchemaDescriptionForLemma(lemma);
+        const declensionDescription = getSchemaDescriptionForLemma(lemma);
 
         innerHtml = `${innerHtml}
         <tr>
         <td>
         ${lemma}
         </td>
-        <td>`
-
-        descriptions.map(description => {
-            const checked = description === checkedDescription;
-            innerHtml = `${innerHtml}${generateRadio(lemma, description, checked)}`;
-        });
-
-        innerHtml = `${innerHtml}
+        <td>
+        <input id="declension-input-${lemma}" list="declension-descriptions" value="${declensionDescription}"/>
         </td>
-        </tr>`;});
+        </tr>`;
+    });
 
     tbody.innerHTML = innerHtml;
 }
+
+refreshDataList();
 
 buttonGenerateSelectDeclensionsTable.addEventListener("click", generateSelectDeclensionsTable);
