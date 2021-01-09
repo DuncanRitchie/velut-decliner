@@ -3,14 +3,6 @@ h1 ~ h2 {
     font-size: 1.25rem;
 }
 
-h1 ~ p {
-    border: 0.15rem solid var(--colour6);
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1em;
-    word-wrap: break-word;
-}
-
 td + td {
     width: 100%;
 }

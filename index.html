@@ -23,14 +23,12 @@
             <span id="text-by-select-declensions"></span>
             <button id="generate-select-declensions-table">Select declensions</button>
         </div>
+        <p>
+            <span id="text-before-table"></span>
+        </p>
         <table>
-            <thead>
-                <tr>
-                    <td><h3>Lemma</h3></td>
-                    <td><h3>Declension</h3></td>
-                </tr>
-            </thead>
             <tbody id="tbody">
+                <!-- Generated rows look like this: -->
                 <!-- <tr>
                     <td>puella</td>
                     <td>
@@ -39,6 +37,7 @@
                 </tr> -->
             </tbody>
             <datalist id="declension-descriptions">
+                <!-- Generated options look like this: -->
                 <!-- <option value="1st, noun, Latin-style"/>
                 <option value="1st, noun, Greek-style"/>
                 <option value="2nd, noun, -us nominative"/>
@@ -54,7 +53,6 @@
             </datalist>
         </table>
         <div>
-            <span id="text-by-decline"></span>
             <button id="decline">Decline</button><br/>
         </div>
         <label for="textarea-output">Output forms:</label><br/>

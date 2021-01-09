@@ -2,6 +2,7 @@ const buttonClearInputs = document.getElementById("clear-inputs");
 const buttonLoadSampleData = document.getElementById("load-sample-data");
 const textareaInput = document.getElementById("textarea-input");
 const buttonGenerateSelectDeclensionsTable = document.getElementById("generate-select-declensions-table");
+const textBeforeTable = document.getElementById("text-before-table");
 const tbody = document.getElementById("tbody");
 const declensionsDataList = document.getElementById("declension-descriptions");
 const textBySelectDeclensions = document.getElementById("text-by-select-declensions");
@@ -170,6 +171,7 @@ const generateSelectDeclensionsTable = () => {
     });
 
     tbody.innerHTML = innerHtml;
+    announceDeclensionsTable();
 }
 
 const decline = () => {
@@ -200,6 +202,11 @@ const decline = () => {
 const clearTextMessages = () => {
     textBySelectDeclensions.textContent = "";
     textByCopyToClipboard.textContent = "";
+}
+
+const announceDeclensionsTable = () => {
+    clearTextMessages();
+    textBeforeTable.textContent = "The table below describes how this page will decline your words. You can edit the right-hand column before clicking “Decline”.";
 }
 
 const warnOfEmptyInput = () => {
