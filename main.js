@@ -1,4 +1,5 @@
 const buttonClearInputs = document.getElementById("clear-inputs");
+const buttonLoadSampleData = document.getElementById("load-sample-data");
 const textareaInput = document.getElementById("textarea-input");
 const buttonGenerateSelectDeclensionsTable = document.getElementById("generate-select-declensions-table");
 const tbody = document.getElementById("tbody");
@@ -8,6 +9,8 @@ const buttonDecline = document.getElementById("decline");
 const textareaOutput = document.getElementById("textarea-output");
 const textByCopyToClipboard = document.getElementById("text-by-copy-to-clipboard");
 const buttonCopyToClipboard = document.getElementById("copy-to-clipboard");
+
+const sampleData = "terra Ariadnē corvus officium avis cōnsul hiātūs cornū diēs";
 
 const schemata = [
     {
@@ -224,6 +227,11 @@ refreshDataList();
 
 buttonClearInputs.addEventListener("click", ()=>{
     clearInputs();
+});
+
+buttonLoadSampleData.addEventListener("click", ()=>{
+    textareaInput.value = sampleData;
+    clearTextMessages();
 });
 
 buttonGenerateSelectDeclensionsTable.addEventListener("click", () => {
