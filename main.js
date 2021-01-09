@@ -27,13 +27,25 @@ const schemata = [
         "Lemma ending":       "ē",
     },
     {
-        "Description":        "2nd, noun, masculine/feminine",
+        "Description":        "2nd, noun, masculine/feminine, -ius",
+        "Unstressed endings": ["ius","iī","ī","iō","ium","iōs","iīs"],
+        "Stressed endings":   ["iōrum"],
+        "Lemma ending":       "ius",
+    },
+    {
+        "Description":        "2nd, noun, masculine/feminine, not -ius",
         "Unstressed endings": ["us","ī","e","ō","um","ōs","īs"],
         "Stressed endings":   ["ōrum"],
         "Lemma ending":       "us",
     },
     {
-        "Description":        "2nd, noun, neuter",
+        "Description":        "2nd, noun, neuter, -ium",
+        "Unstressed endings": ["ium","iī","ī","iō","ium","ia","iīs"],
+        "Stressed endings":   ["iōrum"],
+        "Lemma ending":       "ium",
+    },
+    {
+        "Description":        "2nd, noun, neuter, not -ium",
         "Unstressed endings": ["um","ī","ō","um","a","īs"],
         "Stressed endings":   ["ōrum"],
         "Lemma ending":       "um",
