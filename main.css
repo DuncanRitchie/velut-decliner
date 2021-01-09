@@ -13,15 +13,3 @@ td input {
     width: 100%;
     padding: 0.25rem;
 }
-
-main ul {
-    padding-left: 0.25rem;
-}
-
-main li {
-    list-style: disc inside;
-}
-
-main li + li {
-    margin-top: 0.5rem;
-}
