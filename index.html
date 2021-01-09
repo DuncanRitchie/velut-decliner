@@ -72,26 +72,70 @@
                 <a href="https://www.velut.co.uk/" title="velut — a Latin rhyming dictionary">velut</a> is my Latin vocabulary website. I review all words before adding them to velut. This is made faster by generating forms using this webpage.
             </p>
             <p>
-                I have not finished filling in this section. Or making this webpage.
+                If you’re not me (Duncan Ritchie), you’re unlikely to have much use for this page. If you’re interested in Latin vocabulary though, you should definitely take a look at <a href="https://www.velut.co.uk/" title="velut — a Latin rhyming dictionary">velut</a>!
             </p>
-            <!-- <p>
-                If this sounds a bit convoluted, that’s fair enough. If you’re thinking I should automate it more, you’re probably right. If you question the rationality of using Excel for all the things I’m currently using it for, I don’t disagree. Over time I will make further adjustments to how I manage and upload the data, but this is where I’m at now.
+            <h3>Note on the word “lemma”</h3>
+            <p>
+                The lemma of a word is the form given as the headword in dictionaries; for nouns it’s usually the nominative singular. This page may yield better results if the lemmata you give it are actually lemmata, but your mileage may vary; you may find genitive singulars work better sometimes.
+            </p>
+            <h3>How to use</h3>
+            <p>
+                Enter some Latin nouns or adjectives into the first input box. These can be separated by spaces, line-breaks, commas, or semicolons. I provide some sample words that you can load if you want.
             </p>
             <p>
-                For this page to work correctly, each row must be a record, except the first row which is the header row, and fields must be tab-delimited. This is true when I am copying the table from Excel.
+                Then, click the “Start choosing declensions” button. A table will appear listing every word you put in, alongside a declension — such as “3rd, noun, consonant stem” — that has been automatically determined for each word.
             </p>
             <p>
-                I have two pre-defined schemata: words and lemmata. If the second column is “Word”, this page will assume you’re using the “words” schema. If the second column is “Lemma”, this page will assume you’re using the “lemmata” schema. Columns in the input that are not in my schema will not appear in the output Json.
+                This page determines the declension based on the final letters of the word, so is frequently wrong. You can, however, edit the declension, by deleting the incorrect text and choosing a different declension from the list that appears.
             </p>
             <p>
-                If the second column is something else, this page will not use my schemata, but will attempt to convert your input to Json, with all the fields you specify. Be aware that the fields might not be the data-type you want, and might not even be valid Json.
+                Once you are happy with the table of lemmata and declensions, click “Decline”. A list of all the forms will appear in the box underneath. The lemma that each form came from may appear beside each lemma (separated by a tab), depending on whether the “Output lemma” tickbox is ticked.
             </p>
             <p>
-                The Json generated does not have commas separating the objects, or square brackets around the entire array. This is not the standard Json format, but is the format required by mongoimport.
+                Finally, you can click the “Copy to clipboard” button.
+            </p>
+            <h3>Caveats</h3>
+            <p>
+                Please note: you need to look over all the declined forms that have been generated, because this webpage is quite rudimentary and not every inflection makes sense for every lemma.
             </p>
             <p>
-                If you’re not me, you won’t have access to the Excel file I store all the data for velut in. You can load a small amount of sample data using the buttons at the top of the page, so you can still see what this page does. Or you can paste your own data in.
-            </p> -->
+                Also, this page assumes you’re capable of entering letters with macra (the diacritics on ĀĒĪŌŪȲāēīōūȳ) into the first input box.
+            </p>
+            <p>
+                If the lemma does not end with the letters this page expects, all the forms will probably be wrong. For the third and fourth declensions, you’re probably best off typing the genitive singular in as the “lemma” — for example, try typing “rēgis”, “generis”, or “manūs” into the first input box.
+            </p>
+            <p>
+                Some Latin nouns are more irregular in their endings, so this page won’t handle them correctly. For instance, if you input “rēgis” and “generis”, you’ll get some correct forms, but this page will give “rēg” and “gener” instead of “rēx” and “genus”. Other examples include 3rd-declension nouns with -im or -īs accusative forms (eg “febris”), and some Greek proper nouns (eg “Ēchō”).
+            </p>
+            <p>
+                You should also be aware that this page generates singular and plural forms for all lemmata, but some nouns don’t exist in the singular or don’t make sense in the plural. For each adjective, comparative or adverb forms may be generated, but these aren’t always attested.
+            </p>
+            <p>
+                If adverb forms are generated, the lemma given in the output will be the adjective. But in velut (my Latin dictionary), the lemma of any adverb is the adverb form ending in -ē or -ter. Comparative forms in -ius may belong to both an adjective lemma and an adverb lemma.
+            </p>
+            <h3>What I use this for</h3>
+            <p>
+                This webpage is convenient for me because much of the data for velut (my Latin dictionary) is generated by and stored in a large Excel file. For each word, I need to generate several values based off the word and the lemma (or lemmata) that the word belongs to. A sheet in my Excel file generates the values I need, based off whatever text is pasted into two of the columns (the “word” and “lemmata” columns).
+            </p>
+            <p>
+                Therefore, I can paste the output from this webpage into my Excel file, check everything is correct (it probably isn’t), and that’s how I generate everything velut needs for each word.
+            </p>
+            <h3>The de-Excellation of velut</h3>
+            <p>
+                The Excel file that stores, generates, and manages all the data for velut is very large and complex. This is a problem for several reasons — loading and saving the file takes a long time, occasionally it crashes and I lose work, and I can’t choose to make some data or some functionality publicly visibly without making it all publicly visible…
+            </p>
+            <p>
+                That’s why I am in the process of reducing velut’s reliance on Excel, by re-creating all the functionality in the velut Excel file as webpages or websites and by  exporting all the data to MongoDB databases or Json files to be used by the webpages/sites.
+            </p>
+            <p>
+                This webpage is a part of that, since it replaces an Excel sheet that was generating declined forms.
+            </p>
+            <p>
+                I have a similar Excel sheet that generates conjugated forms of verbs. I’m therefore planning to create a webpage similar to this one, but for conjugating verbs instead of declining nouns and adjectives.
+            </p>
+            <p>
+                As more and more of velut gets de-Excellated, further changes will be needed to this page. For now, it’s okay.
+            </p>
         </section>
     </main>
     <footer>
