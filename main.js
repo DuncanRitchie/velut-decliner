@@ -22,7 +22,7 @@ const schemata = [
     {
         "Description":        "1st, noun, Greek-style",
         "Unstressed endings": ["ē","ēs","ēn","ae"],
-        "Stressed endings":   ["ārum"],
+        "Stressed endings":   [],
         "Lemma ending":       "ē",
     },
     {
@@ -39,25 +39,25 @@ const schemata = [
     },
     {
         "Description":        "3rd, noun, consonant stem",
-        "Unstressed endings": ["","is"],
+        "Unstressed endings": ["","is","em","ī","e","ēs","um","ibus"],
         "Stressed endings":   [],
         "Lemma ending":       "is",
     },
     {
         "Description":        "3rd, noun, -i stem",
-        "Unstressed endings": ["","is"],
+        "Unstressed endings": ["","is","em","ī","ēs","ium","ibus"],
         "Stressed endings":   [],
         "Lemma ending":       "is",
     },
     {
         "Description":        "4th, noun, -us nominative",
-        "Unstressed endings": ["ūs"],
+        "Unstressed endings": ["us","ūs","um","uī","ū","uum","ibus"],
         "Stressed endings":   [],
         "Lemma ending":       "ūs",
     },
     {
         "Description":        "4th, noun, -ū nominative",
-        "Unstressed endings": ["ūs"],
+        "Unstressed endings": ["ū","ūs","ua","uum","ibus"],
         "Stressed endings":   [],
         "Lemma ending":       "ū",
     },
