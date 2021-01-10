@@ -226,8 +226,18 @@ const decline = () => {
         const lemma = getLemmaFromPrincipalParts(principalParts);
 
         schema["Unstressed endings"].map(ending => {
-            const form = `${stem}${ending}`
-            declinedForms.push({Form: form, Lemma: lemma});
+            //// If `ending` is the empty string, we are looking at the lemma of the 3rd declension.
+            //// If the lemma is the same as the genitive singular (eg “avis”) we don’t push it as a form, to avoid duplicates.
+            //// If the lemma is different to the genitive singular (eg “rēx” or “genus”), we push the lemma.
+            if (ending === "") {
+                if (lemma !== `${stem}is`) {
+                    declinedForms.push({Form: lemma, Lemma: lemma});
+                }
+            }
+            else {
+                const generatedForm = `${stem}${ending}`;
+                declinedForms.push({Form: generatedForm, Lemma: lemma});
+            }
         })
 
         schema["Stressed endings"].map(ending => {
