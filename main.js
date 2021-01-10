@@ -12,7 +12,7 @@ const textareaOutput = document.getElementById("textarea-output");
 const textByCopyToClipboard = document.getElementById("text-by-copy-to-clipboard");
 const buttonCopyToClipboard = document.getElementById("copy-to-clipboard");
 
-const sampleData = "terra Ariadnē corvus cerebrum fīlius officium avis cōnsul amor/amōris genus/generis animal/animālis manus/manūs cornū diēs amīcus[adj] tenāx/tenācis[adj]";
+const sampleData = "terra Ariadnē corvus cerebrum fīlius officium avis cōnsul amor/amōris genus/generis animal/animālis manus/manūs cornū diēs probus[adj] tenāx/tenācis[adj]";
 
 const schemata = [
     {
@@ -166,7 +166,7 @@ const getStemFromPrincipalParts = (principalParts, principalPartEnding) => {
 //// "amor/amōris" => "amor"
 //// "cōnsul" => "cōnsul"
 //// "avis" => "avis"
-//// "amīcus[adj]" => "amīcus"
+//// "probus[adj]" => "probus"
 //// "tenāx/tenācis[adj]" => "tenāx"
 const getLemmaFromPrincipalParts = (principalParts) => {
     //// If `principalParts` contains a slash or opening square bracket, the lemma is anything up to it.
