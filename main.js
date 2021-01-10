@@ -52,14 +52,26 @@ const schemata = [
         "Lemma ending":       "um",
     },
     {
-        "Description":        "3rd, noun, consonant stem",
+        "Description":        "3rd, noun, masculine/feminine, consonant stem",
         "Unstressed endings": ["","is","em","ī","e","ēs","um","ibus"],
         "Stressed endings":   [],
         "Lemma ending":       "is",
     },
     {
-        "Description":        "3rd, noun, -i stem",
+        "Description":        "3rd, noun, masculine/feminine, -i stem",
         "Unstressed endings": ["","is","em","ī","ēs","ium","ibus"],
+        "Stressed endings":   [],
+        "Lemma ending":       "is",
+    },
+    {
+        "Description":        "3rd, noun, neuter, consonant stem",
+        "Unstressed endings": ["","is","ī","a","um","ibus"],
+        "Stressed endings":   [],
+        "Lemma ending":       "is",
+    },
+    {
+        "Description":        "3rd, noun, neuter, -i stem",
+        "Unstressed endings": ["","is","ī","ia","ium","ibus"],
         "Stressed endings":   [],
         "Lemma ending":       "is",
     },
