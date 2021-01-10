@@ -5,7 +5,7 @@ h1 ~ h2 {
 
 textarea, td input {
     font-size: 0.75rem;
-    font-family: "Monaco","Consolas",monospace;
+    font-family: "Monaco", "Consolas", monospace;
 }
 
 table {
