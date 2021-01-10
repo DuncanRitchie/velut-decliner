@@ -12,7 +12,7 @@ const textareaOutput = document.getElementById("textarea-output");
 const textByCopyToClipboard = document.getElementById("text-by-copy-to-clipboard");
 const buttonCopyToClipboard = document.getElementById("copy-to-clipboard");
 
-const sampleData = "terra Ariadnē corvus cerebrum fīlius officium avis cōnsul amor/amōris genus/generis animal/animālis manus/manūs cornū diēs";
+const sampleData = "terra Ariadnē corvus cerebrum fīlius officium avis cōnsul amor/amōris genus/generis animal/animālis manus/manūs cornū diēs amīcus[adj] tenāx/tenācis[adj]";
 
 const schemata = [
     {
@@ -97,19 +97,19 @@ const schemata = [
         "Description":           "1st/2nd, adjective",
         "Unstressed endings":    ["us","ī","e","ō","um","ōs","a","ae","am","ā","ās","īs","ior","ē","ius"],
         "Stressed endings":      ["ārum","ōrum"],
-        "Principal part ending": "us",
+        "Principal part ending": "us[adj]",
     },
     {
         "Description":           "3rd, adjective, one-form nominative singular",
-        "Unstressed endings":    ["","is","em","ī","e","ēs","ia","um","ibus"],
+        "Unstressed endings":    ["","is","em","ī","ēs","ia","ium","ibus"],
         "Stressed endings":      [],
-        "Principal part ending": "is",
+        "Principal part ending": "is[adj]",
     },
     {
         "Description":           "3rd, adjective, two-form nominative singular",
-        "Unstressed endings":    ["","e","is","em","ī","ēs","ia","um","ibus"],
+        "Unstressed endings":    ["","is","e","em","ī","ēs","ia","ium","ibus"],
         "Stressed endings":      [],
-        "Principal part ending": "is",
+        "Principal part ending": "is[adj]",
     },
 ]
 
@@ -144,6 +144,14 @@ const getStemFromPrincipalParts = (principalParts, principalPartEnding) => {
     //// If `principalParts` contains a slash, remove anything up to it.
     principalParts = principalParts.substr(principalParts.indexOf("/") + 1);
 
+    //// If either parameter contains an opening square bracket, remove it and anything after it.
+    if (principalParts.includes("[")) {
+        principalParts = principalParts.substr(0, principalParts.indexOf("["));
+    }
+    if (principalPartEnding.includes("[")) {
+        principalPartEnding = principalPartEnding.substr(0, principalPartEnding.indexOf("["));
+    }
+
     //// If `principalParts` ends with the ending, remove the ending.
     if (principalParts.endsWith(principalPartEnding)) {
         return principalParts.substr(0, principalParts.length - principalPartEnding.length);
@@ -158,10 +166,15 @@ const getStemFromPrincipalParts = (principalParts, principalPartEnding) => {
 //// "amor/amōris" => "amor"
 //// "cōnsul" => "cōnsul"
 //// "avis" => "avis"
+//// "amīcus[adj]" => "amīcus"
+//// "tenāx/tenācis[adj]" => "tenāx"
 const getLemmaFromPrincipalParts = (principalParts) => {
-    //// If `principalParts` contains a slash, the lemma is anything up to it.
+    //// If `principalParts` contains a slash or opening square bracket, the lemma is anything up to it.
     if (principalParts.includes("/")) {
-        return principalParts.substr(0, principalParts.indexOf("/"));
+        principalParts = principalParts.substr(0, principalParts.indexOf("/"));
+    }
+    if (principalParts.includes("[")) {
+        return principalParts.substr(0, principalParts.indexOf("["));
     }
     //// Otherwise, the lemma is the entirity of `principalParts`.
     else {
