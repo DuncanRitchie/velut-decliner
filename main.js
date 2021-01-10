@@ -125,7 +125,7 @@ const getSchemaDescriptionForLemma = (lemma) => {
             return schemata[i].Description;
         }
     }
-    return "3rd, noun, consonant stem";
+    return "3rd, noun, masculine/feminine, consonant stem";
 }
 
 const getSchemaFromDescription = (declensionDescription) => {
@@ -136,7 +136,14 @@ const getSchemaFromDescription = (declensionDescription) => {
     }
 }
 
+//// ("amor/amōris", "is") => "amōr"
+//// ("cōnsul", "is") => "cōnsul"
+//// ("avis", "is") => "av"
 const getStemFromLemma = (lemma, lemmaEnding) => {
+    //// If `lemma` contains a slash, remove anything up to it.
+    lemma = lemma.substr(lemma.indexOf("/") + 1);
+
+    //// If `lemma` ends with the ending, remove the ending.
     if (lemma.endsWith(lemmaEnding)) {
         return lemma.substr(0, lemma.length - lemmaEnding.length);
     }
