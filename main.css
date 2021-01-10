@@ -3,6 +3,11 @@ h1 ~ h2 {
     font-size: 1.25rem;
 }
 
+textarea, td input {
+    font-size: 0.75rem;
+    font-family: "Monaco","Consolas",monospace;
+}
+
 table {
     margin-bottom: 1rem;
 }
@@ -12,7 +17,6 @@ td + td {
 }
 
 td input {
-    font-size: 0.75rem;
     box-sizing: border-box;
     width: 100%;
     padding: 0.25rem;
