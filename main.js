@@ -12,7 +12,7 @@ const textareaOutput = document.getElementById("textarea-output");
 const textByCopyToClipboard = document.getElementById("text-by-copy-to-clipboard");
 const buttonCopyToClipboard = document.getElementById("copy-to-clipboard");
 
-const sampleData = "terra Ariadnē corvus cerebrum fīlius officium avis cōnsul amor/amōris genus/generis animal/animālis hiātūs cornū diēs";
+const sampleData = "terra Ariadnē corvus cerebrum fīlius officium avis cōnsul amor/amōris genus/generis animal/animālis manus/manūs cornū diēs";
 
 const schemata = [
     {
@@ -139,6 +139,7 @@ const getSchemaFromDescription = (declensionDescription) => {
 //// ("amor/amōris", "is") => "amōr"
 //// ("cōnsul", "is") => "cōnsul"
 //// ("avis", "is") => "av"
+//// ("hiātus", "ūs") => "hiāt"
 const getStemFromPrincipalParts = (principalParts, principalPartEnding) => {
     //// If `principalParts` contains a slash, remove anything up to it.
     principalParts = principalParts.substr(principalParts.indexOf("/") + 1);
@@ -146,6 +147,10 @@ const getStemFromPrincipalParts = (principalParts, principalPartEnding) => {
     //// If `principalParts` ends with the ending, remove the ending.
     if (principalParts.endsWith(principalPartEnding)) {
         return principalParts.substr(0, principalParts.length - principalPartEnding.length);
+    }
+    //// Handle 4th declension nouns in -us/-ūs correctly.
+    if (principalPartEnding === "ūs" && principalParts.endsWith("us")) {
+        return principalParts.substr(0, principalParts.length - 2);
     }
     return principalParts;
 }
