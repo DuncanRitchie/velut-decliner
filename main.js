@@ -100,6 +100,18 @@ const schemata = [
         "Principal part ending": "us[adj]",
     },
     {
+        "Description":           "3rd, adjective, -āns nominative singular",
+        "Unstressed endings":    ["āns","antis","ante","antem","antī","antēs","antia","antium","antibus","antior","anter","antius"],
+        "Stressed endings":      [],
+        "Principal part ending": "antis[adj]",
+    },
+    {
+        "Description":           "3rd, adjective, -ēns nominative singular",
+        "Unstressed endings":    ["ēns","entis","ente","entem","entī","entēs","entia","entium","entibus","entior","enter","entius"],
+        "Stressed endings":      [],
+        "Principal part ending": "entis[adj]",
+    },
+    {
         "Description":           "3rd, adjective, one-form nominative singular",
         "Unstressed endings":    ["","is","em","ī","ēs","ia","ium","ibus","ior","iter","ius"],
         "Stressed endings":      [],
