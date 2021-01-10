@@ -17,7 +17,7 @@
             <button id="clear-inputs">Clear</button>
             <button id="load-sample-data">Load sample</button>
         </div>
-        <label for="textarea-input">Enter Latin lemmata here (or use sample):</label><br/>
+        <label for="textarea-input">Enter Latin nouns or adjectives here (or use sample):</label><br/>
         <textarea id="textarea-input"></textarea><br/>
         <div>
             <span id="text-by-select-declensions"></span>
@@ -76,11 +76,14 @@
             </p>
             <h3>Note on the word “lemma”</h3>
             <p>
-                The lemma of a word is the form given as the headword in dictionaries; for nouns it’s usually the nominative singular. This page may yield better results if the lemmata you give it are actually lemmata, but your mileage may vary; you may find genitive singulars work better sometimes.
+                The lemma of a word is the form given as the headword in dictionaries; for nouns it’s usually the nominative singular.
             </p>
             <h3>How to use</h3>
             <p>
-                Enter some Latin nouns or adjectives into the first input box. These can be separated by spaces, line-breaks, commas, or semicolons. I provide some sample words that you can load if you want.
+                Enter the lemmata of Latin nouns or adjectives into the first input box. These can be separated by spaces, line-breaks, commas, or semicolons. I provide some sample words that you can load if you want.
+            </p>
+            <p>
+                For words of the third declension, please enter both the nominative singular and the genitive singular, separated by a slash, eg “amor/amōris”. (But if the nominative singular is the same as the genitive singular, with or without the -is ending, it’s fine to just give the nominative singular, eg “avis” and “cōnsul” will yield the same output as “avis/avis” and “cōnsul/cōnsulis”.)
             </p>
             <p>
                 Then, click the “Start choosing declensions” button. A table will appear listing every word you put in, alongside a declension — such as “3rd, noun, consonant stem” — that has been automatically determined for each word.
@@ -102,10 +105,10 @@
                 Also, this page assumes you’re capable of entering letters with macra (the diacritics on ĀĒĪŌŪȲāēīōūȳ) into the first input box.
             </p>
             <p>
-                If the lemma does not end with the letters this page expects, all the forms will probably be wrong. For the third and fourth declensions, you’re probably best off typing the genitive singular in as the “lemma” — for example, try typing “rēgis”, “generis”, or “manūs” into the first input box.
+                If the lemma does not end with the letters this page expects, all the forms will probably be wrong. For the fourth declension, you’re best off typing the genitive singular in as the “lemma” — for example, try typing “manūs” into the first input box.
             </p>
             <p>
-                Some Latin nouns are more irregular in their endings, so this page won’t handle them correctly. For instance, if you input “rēgis” and “generis”, you’ll get some correct forms, but this page will give “rēg” and “gener” instead of “rēx” and “genus”. Other examples include 3rd-declension nouns with -im or -īs accusative forms (eg “febris”), and some Greek proper nouns (eg “Ēchō”).
+                Some Latin nouns are more irregular in their endings, so this page won’t handle them correctly. This is true for 3rd-declension nouns with -im or -īs accusative forms (eg “febris”) and some Greek proper nouns (eg “Ēchō”), among others.
             </p>
             <p>
                 You should also be aware that this page generates singular and plural forms for all lemmata, but some nouns don’t exist in the singular or don’t make sense in the plural. For each adjective, comparative or adverb forms may be generated, but these aren’t always attested.
