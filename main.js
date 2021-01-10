@@ -101,13 +101,13 @@ const schemata = [
     },
     {
         "Description":           "3rd, adjective, one-form nominative singular",
-        "Unstressed endings":    ["","is","em","ī","ēs","ia","ium","ibus"],
+        "Unstressed endings":    ["","is","em","ī","ēs","ia","ium","ibus","ior","iter","ius"],
         "Stressed endings":      [],
         "Principal part ending": "is[adj]",
     },
     {
         "Description":           "3rd, adjective, two-form nominative singular",
-        "Unstressed endings":    ["","is","e","em","ī","ēs","ia","ium","ibus"],
+        "Unstressed endings":    ["","is","e","em","ī","ēs","ia","ium","ibus","ior","iter","ius"],
         "Stressed endings":      [],
         "Principal part ending": "is[adj]",
     },
