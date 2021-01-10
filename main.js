@@ -217,6 +217,9 @@ const generateSelectDeclensionsTable = () => {
 const decline = () => {
     const countLemmata = tbody.children.length;
     let declinedForms = [];
+    const pushToDeclinedForms = (form, lemma) => {
+        declinedForms.push({Form: form, Lemma: lemma});
+    }
 
     for (let i = 0; i < countLemmata; i++) {
         const principalParts = tbody.children[i].children[0].textContent.trim();
@@ -228,21 +231,21 @@ const decline = () => {
         schema["Unstressed endings"].map(ending => {
             //// If `ending` is the empty string, we are looking at the lemma of the 3rd declension.
             //// If the lemma is the same as the genitive singular (eg “avis”) we don’t push it as a form, to avoid duplicates.
-            //// If the lemma is different to the genitive singular (eg “rēx” or “genus”), we push the lemma.
+            //// If the lemma is different to the genitive singular (eg “rēx/rēgis” or “genus/generis”), we push the lemma.
             if (ending === "") {
                 if (lemma !== `${stem}is`) {
-                    declinedForms.push({Form: lemma, Lemma: lemma});
+                    pushToDeclinedForms(lemma, lemma);
                 }
             }
             else {
-                const generatedForm = `${stem}${ending}`;
-                declinedForms.push({Form: generatedForm, Lemma: lemma});
+                const form = `${stem}${ending}`;
+                pushToDeclinedForms(form, lemma);
             }
         })
 
         schema["Stressed endings"].map(ending => {
-            const form = `${stem}${ending}`
-            declinedForms.push({Form: form, Lemma: lemma});
+            const form = `${stem}${ending}`;
+            pushToDeclinedForms(form, lemma);
         })
     }
 
