@@ -136,12 +136,6 @@ const getSchemaFromDescription = (declensionDescription) => {
     }
 }
 
-const getFormsFromLemmaAndDeclensionDescription = (lemma, declensionDescription) => {
-    let forms = [];
-
-    return forms;
-}
-
 const getStemFromLemma = (lemma, lemmaEnding) => {
     if (lemma.endsWith(lemmaEnding)) {
         return lemma.substr(0, lemma.length - lemmaEnding.length);
