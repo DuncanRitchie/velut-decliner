@@ -89,7 +89,7 @@ const schemata = [
     },
     {
         "Description":        "5th, noun",
-        "Unstressed endings": ["em","ē","ēs"],
+        "Unstressed endings": ["ēs", "em","ē"],
         "Stressed endings":   ["ēī","ērum","ēbus"],
         "Principal part ending":       "ēs",
     },
