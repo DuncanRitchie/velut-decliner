@@ -19,97 +19,97 @@ const schemata = [
         "Description":        "1st, noun, Latin-style",
         "Unstressed endings": ["a","ae","am","ā","ās","īs"],
         "Stressed endings":   ["ārum"],
-        "Lemma ending":       "a",
+        "Principal part ending":       "a",
     },
     {
         "Description":        "1st, noun, Greek-style",
         "Unstressed endings": ["ē","ēs","ēn","ae"],
         "Stressed endings":   [],
-        "Lemma ending":       "ē",
+        "Principal part ending":       "ē",
     },
     {
         "Description":        "2nd, noun, masculine/feminine, -ius",
         "Unstressed endings": ["ius","iī","ī","iō","ium","iōs","iīs"],
         "Stressed endings":   ["iōrum"],
-        "Lemma ending":       "ius",
+        "Principal part ending":       "ius",
     },
     {
         "Description":        "2nd, noun, masculine/feminine, not -ius",
         "Unstressed endings": ["us","ī","e","ō","um","ōs","īs"],
         "Stressed endings":   ["ōrum"],
-        "Lemma ending":       "us",
+        "Principal part ending":       "us",
     },
     {
         "Description":        "2nd, noun, neuter, -ium",
         "Unstressed endings": ["ium","iī","ī","iō","ium","ia","iīs"],
         "Stressed endings":   ["iōrum"],
-        "Lemma ending":       "ium",
+        "Principal part ending":       "ium",
     },
     {
         "Description":        "2nd, noun, neuter, not -ium",
         "Unstressed endings": ["um","ī","ō","um","a","īs"],
         "Stressed endings":   ["ōrum"],
-        "Lemma ending":       "um",
+        "Principal part ending":       "um",
     },
     {
         "Description":        "3rd, noun, masculine/feminine, consonant stem",
         "Unstressed endings": ["","is","em","ī","e","ēs","um","ibus"],
         "Stressed endings":   [],
-        "Lemma ending":       "is",
+        "Principal part ending":       "is",
     },
     {
         "Description":        "3rd, noun, masculine/feminine, -i stem",
         "Unstressed endings": ["","is","em","ī","ēs","ium","ibus"],
         "Stressed endings":   [],
-        "Lemma ending":       "is",
+        "Principal part ending":       "is",
     },
     {
         "Description":        "3rd, noun, neuter, consonant stem",
         "Unstressed endings": ["","is","ī","a","um","ibus"],
         "Stressed endings":   [],
-        "Lemma ending":       "is",
+        "Principal part ending":       "is",
     },
     {
         "Description":        "3rd, noun, neuter, -i stem",
         "Unstressed endings": ["","is","ī","ia","ium","ibus"],
         "Stressed endings":   [],
-        "Lemma ending":       "is",
+        "Principal part ending":       "is",
     },
     {
         "Description":        "4th, noun, -us nominative",
         "Unstressed endings": ["us","ūs","um","uī","ū","uum","ibus"],
         "Stressed endings":   [],
-        "Lemma ending":       "ūs",
+        "Principal part ending":       "ūs",
     },
     {
         "Description":        "4th, noun, -ū nominative",
         "Unstressed endings": ["ū","ūs","ua","uum","ibus"],
         "Stressed endings":   [],
-        "Lemma ending":       "ū",
+        "Principal part ending":       "ū",
     },
     {
         "Description":        "5th, noun",
         "Unstressed endings": ["em","ē","ēs"],
         "Stressed endings":   ["ēī","ērum","ēbus"],
-        "Lemma ending":       "ēs",
+        "Principal part ending":       "ēs",
     },
     {
         "Description":        "1st/2nd, adjective",
         "Unstressed endings": ["us","ī","e","ō","um","ōs","a","ae","am","ā","ās","īs","ior","ē","ius"],
         "Stressed endings":   ["ārum","ōrum"],
-        "Lemma ending":       "us",
+        "Principal part ending":       "us",
     },
     {
         "Description":        "3rd, adjective, one-form nominative singular",
         "Unstressed endings": ["","is","em","ī","e","ēs","ia","um","ibus"],
         "Stressed endings":   [],
-        "Lemma ending":       "is",
+        "Principal part ending":       "is",
     },
     {
         "Description":        "3rd, adjective, two-form nominative singular",
         "Unstressed endings": ["","e","is","em","ī","ēs","ia","um","ibus"],
         "Stressed endings":   [],
-        "Lemma ending":       "is",
+        "Principal part ending":       "is",
     },
 ]
 
@@ -119,9 +119,9 @@ const getDescriptionsFromSchemata = () => {
     })
 }
 
-const getSchemaDescriptionForLemma = (lemma) => {
+const getSchemaDescriptionForPrincipalParts = (principalParts) => {
     for (let i = 0; i < schemata.length; i++) {
-        if (lemma.endsWith(schemata[i]["Lemma ending"])) {
+        if (principalParts.endsWith(schemata[i]["Principal part ending"])) {
             return schemata[i].Description;
         }
     }
@@ -139,25 +139,39 @@ const getSchemaFromDescription = (declensionDescription) => {
 //// ("amor/amōris", "is") => "amōr"
 //// ("cōnsul", "is") => "cōnsul"
 //// ("avis", "is") => "av"
-const getStemFromLemma = (lemma, lemmaEnding) => {
-    //// If `lemma` contains a slash, remove anything up to it.
-    lemma = lemma.substr(lemma.indexOf("/") + 1);
+const getStemFromPrincipalParts = (principalParts, principalPartEnding) => {
+    //// If `principalParts` contains a slash, remove anything up to it.
+    principalParts = principalParts.substr(principalParts.indexOf("/") + 1);
 
-    //// If `lemma` ends with the ending, remove the ending.
-    if (lemma.endsWith(lemmaEnding)) {
-        return lemma.substr(0, lemma.length - lemmaEnding.length);
+    //// If `principalParts` ends with the ending, remove the ending.
+    if (principalParts.endsWith(principalPartEnding)) {
+        return principalParts.substr(0, principalParts.length - principalPartEnding.length);
     }
-    return lemma;
+    return principalParts;
 }
 
-const getLemmataFromInput = () => {
+//// "amor/amōris" => "amor"
+//// "cōnsul" => "cōnsul"
+//// "avis" => "avis"
+const getLemmaFromPrincipalParts = (principalParts) => {
+    //// If `principalParts` contains a slash, the lemma is anything up to it.
+    if (principalParts.includes("/")) {
+        return principalParts.substr(0, principalParts.indexOf("/"));
+    }
+    //// Otherwise, the lemma is the entirity of `principalParts`.
+    else {
+        return principalParts;
+    }
+}
+
+const getPrincipalPartsFromInput = () => {
     if (!textareaInput.value) {
         return [];
     }
 
-    const lemmataArray = textareaInput.value.split(/[\s,;\.]+/);
-    console.log(lemmataArray);
-    return lemmataArray;
+    const principalPartsArray = textareaInput.value.split(/[\s,;\.]+/);
+    console.log(principalPartsArray);
+    return principalPartsArray;
 }
 
 const refreshDataList = () => {
@@ -177,21 +191,21 @@ const clearInputs = () => {
 }
 
 const generateSelectDeclensionsTable = () => {
-    const lemmataArray = getLemmataFromInput();
+    const principalPartsArray = getPrincipalPartsFromInput();
     const descriptions = getDescriptionsFromSchemata();
     console.log(descriptions);
 
     let innerHtml = "";
-    lemmataArray.map(lemma => {
-        const declensionDescription = getSchemaDescriptionForLemma(lemma);
+    principalPartsArray.map(principalPart => {
+        const declensionDescription = getSchemaDescriptionForPrincipalParts(principalPart);
 
         innerHtml = `${innerHtml}
         <tr>
         <td>
-        ${lemma}
+        ${principalPart}
         </td>
         <td>
-        <input id="declension-input-${lemma}" list="declension-descriptions" value="${declensionDescription}"/>
+        <input id="declension-input-${principalPart}" list="declension-descriptions" value="${declensionDescription}"/>
         </td>
         </tr>`;
     });
@@ -205,10 +219,11 @@ const decline = () => {
     let declinedForms = [];
 
     for (let i = 0; i < countLemmata; i++) {
-        const lemma = tbody.children[i].children[0].textContent.trim();
+        const principalParts = tbody.children[i].children[0].textContent.trim();
         const declensionDescription = tbody.children[i].children[1].children[0].value;
         const schema = getSchemaFromDescription(declensionDescription);
-        const stem = getStemFromLemma(lemma, schema["Lemma ending"]);
+        const stem = getStemFromPrincipalParts(principalParts, schema["Principal part ending"]);
+        const lemma = getLemmaFromPrincipalParts(principalParts);
 
         schema["Unstressed endings"].map(ending => {
             const form = `${stem}${ending}`
