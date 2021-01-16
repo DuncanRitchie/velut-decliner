@@ -23,8 +23,8 @@ const schemata = [
     },
     {
         "Description":           "1st, noun, Greek-style",
-        "Unstressed endings":    ["ē","ēs","ēn","ae"],
-        "Stressed endings":      [],
+        "Unstressed endings":    ["ē","ēs","ēn","ae","ās","īs"],
+        "Stressed endings":      ["ārum"],
         "Principal part ending": "ē",
     },
     {
@@ -34,7 +34,7 @@ const schemata = [
         "Principal part ending": "ius",
     },
     {
-        "Description":           "2nd, noun, masculine/feminine, not -ius",
+        "Description":           "2nd, noun, masculine/feminine, -us",
         "Unstressed endings":    ["us","ī","e","ō","um","ōs","īs"],
         "Stressed endings":      ["ōrum"],
         "Principal part ending": "us",
@@ -46,10 +46,16 @@ const schemata = [
         "Principal part ending": "ium",
     },
     {
-        "Description":           "2nd, noun, neuter, not -ium",
+        "Description":           "2nd, noun, neuter, -um",
         "Unstressed endings":    ["um","ī","ō","um","a","īs"],
         "Stressed endings":      ["ōrum"],
         "Principal part ending": "um",
+    },
+    {
+        "Description":           "2nd, noun, -er/-erī",
+        "Unstressed endings":    ["er","erī","ere","erō","erum","erōs","erīs"],
+        "Stressed endings":      ["erōrum"],
+        "Principal part ending": "er",
     },
     {
         "Description":           "3rd, noun, masculine/feminine, consonant stem",
@@ -89,15 +95,27 @@ const schemata = [
     },
     {
         "Description":           "5th, noun",
-        "Unstressed endings":    ["ēs", "em","ē"],
+        "Unstressed endings":    ["ēs","em","ē"],
         "Stressed endings":      ["ēī","ērum","ēbus"],
         "Principal part ending": "ēs",
     },
     {
-        "Description":           "1st/2nd, adjective",
+        "Description":           "1st/2nd, adjective, -us",
         "Unstressed endings":    ["us","ī","e","ō","um","ōs","a","ae","am","ā","ās","īs","ior","ē","ius"],
         "Stressed endings":      ["ārum","ōrum"],
         "Principal part ending": "us[adj]",
+    },
+    {
+        "Description":           "1st/2nd, adjective, -er/erī",
+        "Unstressed endings":    ["er","erī","ere","erō","erum","erōs","era","erae","eram","erā","erās","erīs","erior","erē","erius"],
+        "Stressed endings":      ["erārum","erōrum"],
+        "Principal part ending": "er[adj]",
+    },
+    {
+        "Description":           "1st/2nd, adjective, -er/rī",
+        "Unstressed endings":    ["er","rī","re","rō","rum","rōs","ra","rae","ram","rā","rās","rīs","rior","rē","rius"],
+        "Stressed endings":      ["rārum","rōrum"],
+        "Principal part ending": "er[adj]",
     },
     {
         "Description":           "3rd, adjective, -āns nominative singular",
