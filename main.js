@@ -211,31 +211,50 @@ const getSchemaFromDescription = (declensionDescription) => {
     }
 }
 
+//// Removes any instance of `terminator` and any characters after it from `string`.
+//// Eg, ("Duncan Ritchie"," ") => "Duncan"
+//// Eg, ("velut"," ") => "velut"
+const getSubstringBeforeTerminator = (string, terminator) => {
+    if (string.includes(terminator)) {
+        return string.substr(0, string.indexOf(terminator));
+    }
+    return string;
+}
+
+const getSubstringBeforeSlash = (string) => {
+    return getSubstringBeforeTerminator(string, "/");
+}
+
+const getSubstringBeforeSquareBracket = (string) => {
+    return getSubstringBeforeTerminator(string, "[");
+}
+
+const getSubstringBeforeRoundBracket = (string) => {
+    return getSubstringBeforeTerminator(string, "(");
+}
+
 //// ("amor/amōris", "is") => "amōr"
 //// ("cōnsul", "is") => "cōnsul"
 //// ("avis", "is") => "av"
 //// ("hiātus", "ūs") => "hiāt"
 const getStemFromPrincipalParts = (principalParts, principalPartEnding) => {
-    //// If `principalParts` contains a slash, remove anything up to it.
-    principalParts = principalParts.substr(principalParts.indexOf("/") + 1);
+    let output = principalParts;
 
-    //// If either parameter contains an opening square bracket, remove it and anything after it.
-    if (principalParts.includes("[")) {
-        principalParts = principalParts.substr(0, principalParts.indexOf("["));
-    }
-    if (principalPartEnding.includes("[")) {
-        principalPartEnding = principalPartEnding.substr(0, principalPartEnding.indexOf("["));
-    }
+    //// If `output` contains a slash, remove anything up to it.
+    output = output.substr(output.indexOf("/") + 1);
 
-    //// If `principalParts` ends with the ending, remove the ending.
-    if (principalParts.endsWith(principalPartEnding)) {
-        return principalParts.substr(0, principalParts.length - principalPartEnding.length);
-    }
+    //// If either parameter contains an opening square or round bracket, remove it and anything after it.
+    output = getSubstringBeforeSquareBracket(output);
+    output = getSubstringBeforeRoundBracket(output);
+
+    //// If `output` ends with the ending, remove the ending.
+    output = getSubstringBeforeTerminator(output, principalPartEnding);
+
     //// Handle 4th declension nouns in -us/-ūs correctly.
-    if (principalPartEnding === "ūs" && principalParts.endsWith("us")) {
-        return principalParts.substr(0, principalParts.length - 2);
+    if (principalPartEnding === "ūs" && output.endsWith("us")) {
+        return output.substr(0, output.length - 2);
     }
-    return principalParts;
+    return output;
 }
 
 //// "amor/amōris" => "amor"
@@ -244,17 +263,13 @@ const getStemFromPrincipalParts = (principalParts, principalPartEnding) => {
 //// "probus[adj]" => "probus"
 //// "tenāx/tenācis[adj]" => "tenāx"
 const getLemmaFromPrincipalParts = (principalParts) => {
-    //// If `principalParts` contains a slash or opening square bracket, the lemma is anything up to it.
-    if (principalParts.includes("/")) {
-        principalParts = principalParts.substr(0, principalParts.indexOf("/"));
-    }
-    if (principalParts.includes("[")) {
-        return principalParts.substr(0, principalParts.indexOf("["));
-    }
+    let output = principalParts;
+    //// If `principalParts` contains a slash or opening bracket, the lemma is anything up to it.
+    output = getSubstringBeforeSlash(output);
+    output = getSubstringBeforeSquareBracket(output);
+    output = getSubstringBeforeRoundBracket(output);
     //// Otherwise, the lemma is the entirity of `principalParts`.
-    else {
-        return principalParts;
-    }
+    return output;
 }
 
 const getPrincipalPartsFromInput = () => {
