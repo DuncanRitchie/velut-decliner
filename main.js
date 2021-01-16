@@ -305,9 +305,8 @@ const getStemFromPrincipalParts = (principalParts, principalPartEnding) => {
 //// "tenāx/tenācis[adj]" => "tenāx"
 const getLemmaFromPrincipalParts = (principalParts) => {
     let output = principalParts;
-    //// If `principalParts` contains a slash or opening bracket, the lemma is anything up to it.
+    //// If `principalParts` contains a slash or opening round bracket, the lemma is anything up to it.
     output = getSubstringBeforeSlash(output);
-    output = getSubstringBeforeSquareBracket(output);
     output = getSubstringBeforeRoundBracket(output);
     //// Otherwise, the lemma is the entirity of `principalParts`.
     return output;
