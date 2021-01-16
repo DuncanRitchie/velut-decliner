@@ -251,6 +251,7 @@ const refreshDataList = () => {
 
 const clearInputs = () => {
     textareaInput.value = "";
+    textBeforeTable.textContent = "";
     tbody.innerHTML = "";
     textareaOutput.value = "";
     clearTextMessages();
