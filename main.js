@@ -52,12 +52,6 @@ const schemata = [
         "Principal part ending": "um",
     },
     {
-        "Description":           "2nd, noun, -er/-erī",
-        "Unstressed endings":    ["er","erī","ere","erō","erum","erōs","erīs"],
-        "Stressed endings":      ["erōrum"],
-        "Principal part ending": "er",
-    },
-    {
         "Description":           "3rd, noun, masculine/feminine, consonant stem",
         "Unstressed endings":    ["","is","em","ī","e","ēs","um","ibus"],
         "Stressed endings":      [],
@@ -158,6 +152,12 @@ const schemata = [
         "Unstressed endings":    ["nter","ntius"],
         "Stressed endings":      ["ntissimē"],
         "Principal part ending": "nter",
+    },
+    {
+        "Description":           "2nd, noun, -er/-erī",
+        "Unstressed endings":    ["er","erī","ere","erō","erum","erōs","erīs"],
+        "Stressed endings":      ["erōrum"],
+        "Principal part ending": "er",
     },
 ]
 
