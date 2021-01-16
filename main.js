@@ -269,7 +269,7 @@ const generateSelectDeclensionsTable = () => {
 
         innerHtml = `${innerHtml}
         <tr>
-        <td>
+        <td lang="la">
         ${principalPart}
         </td>
         <td>
