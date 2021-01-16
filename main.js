@@ -114,56 +114,56 @@ const schemata = [
         "Parts of speech":       ["adj"],
         "Unstressed endings":    ["us","ī","e","ō","um","ōs","a","ae","am","ā","ās","īs","ior","ius"],
         "Stressed endings":      ["ārum","ōrum","iōris","iōrem","iōrī","iōre","iōrēs","iōrum","iōribus","issimus","issimī","issime","issimō","issimum","issimōs","issima","issimae","issimam","issimā","issimās","issimīs","issimārum","issimōrum"],
-        "Principal part ending": "us[adj]",
+        "Principal part ending": "us",
     },
     {
         "Description":           "1st/2nd, adjective, -er/erī",
         "Parts of speech":       ["adj"],
         "Unstressed endings":    ["er","erī","ere","erō","erum","erōs","era","erae","eram","erā","erās","erīs"],
         "Stressed endings":      ["erārum","erōrum"],
-        "Principal part ending": "er[adj]",
+        "Principal part ending": "er",
     },
     {
         "Description":           "1st/2nd, adjective, -er/rī",
         "Parts of speech":       ["adj"],
         "Unstressed endings":    ["er","rī","re","rō","rum","rōs","ra","rae","ram","rā","rās","rīs"],
         "Stressed endings":      ["rārum","rōrum"],
-        "Principal part ending": "er[adj]",
+        "Principal part ending": "er",
     },
     {
         "Description":           "3rd, adjective, -āns nominative singular",
         "Parts of speech":       ["adj"],
         "Unstressed endings":    ["āns","antis","ante","antem","antī","antēs","antia","antium","antibus","antior","antius"],
         "Stressed endings":      ["antiōris","antiōrem","antiōrī","antiōre","antiōrēs","antiōrum","antiōribus","antissimus","antissimī","antissime","antissimō","antissimum","antissimōs","antissima","antissimae","antissimam","antissimā","antissimās","antissimīs","antissimārum","antissimōrum"],
-        "Principal part ending": "antis[adj]",
+        "Principal part ending": "antis",
     },
     {
         "Description":           "3rd, adjective, -ēns nominative singular",
         "Parts of speech":       ["adj"],
         "Unstressed endings":    ["ēns","entis","ente","entem","entī","entēs","entia","entium","entibus","entior","entius"],
         "Stressed endings":      ["entiōris","entiōrem","entiōrī","entiōre","entiōrēs","entiōrum","entiōribus","entissimus","entissimī","entissime","entissimō","entissimum","entissimōs","entissima","entissimae","entissimam","entissimā","entissimās","entissimīs","entissimārum","entissimōrum"],
-        "Principal part ending": "entis[adj]",
+        "Principal part ending": "entis",
     },
     {
         "Description":           "3rd, adjective, one-form nominative singular",
         "Parts of speech":       ["adj"],
         "Unstressed endings":    ["","is","em","ī","ēs","ia","ium","ibus","ior","ius"],
         "Stressed endings":      ["iōris","iōrem","iōrī","iōre","iōrēs","iōrum","iōribus","issimus","issimī","issime","issimō","issimum","issimōs","issima","issimae","issimam","issimā","issimās","issimīs","issimārum","issimōrum"],
-        "Principal part ending": "is[adj]",
+        "Principal part ending": "is",
     },
     {
         "Description":           "3rd, adjective, two-form nominative singular",
         "Parts of speech":       ["adj"],
         "Unstressed endings":    ["","is","e","em","ī","ēs","ia","ium","ibus","ior","ius"],
         "Stressed endings":      ["iōris","iōrem","iōrī","iōre","iōrēs","iōrum","iōribus","issimus","issimī","issime","issimō","issimum","issimōs","issima","issimae","issimam","issimā","issimās","issimīs","issimārum","issimōrum"],
-        "Principal part ending": "is[adj]",
+        "Principal part ending": "is",
     },
     {
         "Description":           "Adverb, -ē",
         "Parts of speech":       ["adv"],
         "Unstressed endings":    ["ē","ius"],
         "Stressed endings":      ["issimē"],
-        "Principal part ending": "ē[adv]",
+        "Principal part ending": "ē",
     },
     {
         "Description":           "Adverb, -iter",
@@ -181,7 +181,7 @@ const schemata = [
     },
     {
         "Description":           "2nd, noun, -er/-erī",
-        "Parts of speech":       ["adv"],
+        "Parts of speech":       ["n","prn"],
         "Unstressed endings":    ["er","erī","ere","erō","erum","erōs","erīs"],
         "Stressed endings":      ["erōrum"],
         "Principal part ending": "er",
@@ -195,12 +195,24 @@ const getDescriptionsFromSchemata = () => {
 }
 
 const getSchemaDescriptionForPrincipalParts = (principalParts) => {
-    for (let i = 0; i < schemata.length; i++) {
-        if (principalParts.endsWith(schemata[i]["Principal part ending"])) {
-            return schemata[i].Description;
-        }
-    }
-    return "3rd, noun, masculine/feminine, consonant stem";
+    // console.log("principalParts", principalParts);
+    const textInBrackets = getTextInBrackets(principalParts);
+    // console.log("textInBrackets", textInBrackets);
+    const withoutBrackets = getSubstringBeforeRoundBracket(getSubstringBeforeSquareBracket(principalParts));
+    // console.log("withoutBrackets", withoutBrackets);
+
+    const filteredSchemata = textInBrackets === ""
+                           ? schemata
+                           : schemata.filter(schema => {
+                               return schema["Parts of speech"].includes(textInBrackets);
+                            });
+    // console.log("filteredSchemata", filteredSchemata);
+
+    const find = filteredSchemata.find(schema => {
+        return withoutBrackets.endsWith(schema["Principal part ending"]);
+    })
+
+    return find?.Description ?? "3rd, noun, masculine/feminine, consonant stem";
 }
 
 const getSchemaFromDescription = (declensionDescription) => {
