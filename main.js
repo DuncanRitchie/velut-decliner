@@ -212,6 +212,7 @@ const getSchemaFromDescription = (declensionDescription) => {
 }
 
 //// Removes any instance of `terminator` and any characters after it from `string`.
+//// Eg, ("Duncan Ritchie is a software dev"," ") => "Duncan"
 //// Eg, ("Duncan Ritchie"," ") => "Duncan"
 //// Eg, ("velut"," ") => "velut"
 const getSubstringBeforeTerminator = (string, terminator) => {
@@ -233,6 +234,34 @@ const getSubstringBeforeRoundBracket = (string) => {
     return getSubstringBeforeTerminator(string, "(");
 }
 
+//// Removes any instance of `terminator` and any characters before it from `string`.
+//// Eg, ("Duncan Ritchie is a software dev"," ") => "dev"
+//// Eg, ("Duncan Ritchie"," ") => "Ritchie"
+//// Eg, ("velut"," ") => "velut"
+const getSubstringAfterTerminator = (string, terminator) => {
+    return string.substr(string.indexOf(terminator) + 1);
+}
+
+//// Eg, "probē(adv)" => "adv"
+//// Eg, "amīcus[adj]" => "adj"
+//// Eg, "tenāciter" => ""
+const getTextInBrackets = (stringPerhapsContainingBrackets) => {
+    let output = stringPerhapsContainingBrackets;
+    output = getSubstringAfterTerminator(output, "[");
+    output = getSubstringAfterTerminator(output, "(");
+    output = getSubstringBeforeTerminator(output, "]");
+    output = getSubstringBeforeTerminator(output, ")");
+
+    const paramWithoutBrackets = stringPerhapsContainingBrackets.replace(/[\[\]\(\)]/g, "");
+
+    if (output === paramWithoutBrackets) {
+        return "";
+    }
+    else {
+        return output;
+    }
+}
+
 //// ("amor/amōris", "is") => "amōr"
 //// ("cōnsul", "is") => "cōnsul"
 //// ("avis", "is") => "av"
@@ -241,7 +270,7 @@ const getStemFromPrincipalParts = (principalParts, principalPartEnding) => {
     let output = principalParts;
 
     //// If `output` contains a slash, remove anything up to it.
-    output = output.substr(output.indexOf("/") + 1);
+    output = getSubstringAfterTerminator(output, "/");
 
     //// If either parameter contains an opening square or round bracket, remove it and anything after it.
     output = getSubstringBeforeSquareBracket(output);
