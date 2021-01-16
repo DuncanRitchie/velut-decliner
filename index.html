@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Generates inflected forms of Latin nouns, proper nouns, adjectives, and adverbs.">
+    <meta name="description" content="Generates inflected forms of Latin nouns, adjectives, and adverbs.">
     <title>Latin declensions for velut</title>
     <link rel="shortcut icon" href="https://www.duncanritchie.co.uk/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://www.duncanritchie.co.uk/css/main.css">
@@ -17,7 +17,7 @@
             <button id="clear-inputs">Clear</button>
             <button id="load-sample-data">Load sample</button>
         </div>
-        <label for="textarea-input">Enter Latin nouns or adjectives here (or use sample):</label><br/>
+        <label for="textarea-input">Enter Latin nouns/adjectives/adverbs here (or use sample):</label><br/>
         <textarea id="textarea-input"></textarea><br/>
         <div>
             <span id="text-by-select-declensions"></span>
@@ -80,7 +80,7 @@
             </p>
             <h3>How to use</h3>
             <p>
-                Enter the lemmata of Latin nouns or adjectives into the first input box. These can be separated by spaces, line-breaks, commas, or semicolons. I provide some sample words that you can load if you want.
+                Enter the lemmata of Latin nouns/adjectives/adverbs into the first input box. These can be separated by spaces, line-breaks, commas, or semicolons. I provide some sample words that you can load if you want.
             </p>
             <p>
                 For words of the third declension, please enter both the nominative singular and the genitive singular, separated by a slash, eg “amor/amōris”. (But if the nominative singular is the same as the genitive singular, with or without the -is ending, it’s fine to just give the nominative singular, eg “avis” and “cōnsul” will yield the same output as “avis/avis” and “cōnsul/cōnsulis”.)
@@ -117,10 +117,7 @@
                 Some Latin nouns are more irregular in their endings, so this page won’t handle them correctly. This is true for 3rd-declension nouns with -im or -īs accusative forms (eg “febris”) and some Greek proper nouns (eg “Ēchō”), among others.
             </p>
             <p>
-                You should also be aware that this page generates singular and plural forms for all lemmata, but some nouns don’t exist in the singular or don’t make sense in the plural. For each adjective, comparative or adverb forms may be generated, but these aren’t always attested.
-            </p>
-            <p>
-                If adverb forms are generated, the lemma given in the output will be the adjective. But in velut (my Latin dictionary), the lemma of any adverb is the adverb form ending in -ē or -ter. Comparative forms in -ius may belong to both an adjective lemma and an adverb lemma.
+                You should also be aware that this page generates singular and plural forms for all lemmata, but some nouns don’t exist in the singular or don’t make sense in the plural. For each adjective or adverb, comparative forms may be generated, but these aren’t always attested.
             </p>
             <h3>What I use this for</h3>
             <p>
