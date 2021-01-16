@@ -13,7 +13,7 @@ const textareaOutput = document.getElementById("textarea-output");
 const textByCopyToClipboard = document.getElementById("text-by-copy-to-clipboard");
 const buttonCopyToClipboard = document.getElementById("copy-to-clipboard");
 
-const sampleData = "terra Ariadnē corvus cerebrum fīlius officium puer avis cōnsul amor/amōris genus/generis animal/animālis manus/manūs cornū diēs probus[adj] signifer[adj] tenāx/tenācis[adj] probē[adv] tenāciter cōnstanter libenter";
+const sampleData = "terra Ariadnē corvus cerebrum fīlius officium puer(n) avis cōnsul amor/amōris genus/generis animal/animālis manus/manūs cornū diēs probus(adj) signifer[n] signifer[adj] tenāx/tenācis(adj) probē(adv) tenāciter cōnstanter libenter";
 
 //// "Parts of speech" may optionally appear in lemmata on velut in square brackets (eg ‘amīcus[n]’ is a noun & ‘amīcus[adj]’ is an adjective); "adv" means adverb and "prn" means proper noun (which has the same declensions as noun).
 //// "Principal part ending" is the ending that will trigger the schema being automatically assigned for a lemma.
