@@ -6,6 +6,7 @@ const textBeforeTable = document.getElementById("text-before-table");
 const tbody = document.getElementById("tbody");
 const declensionsDataList = document.getElementById("declension-descriptions");
 const textBySelectDeclensions = document.getElementById("text-by-select-declensions");
+const tickboxIncludeStressedEndings = document.getElementById("include-stressed-endings");
 const tickboxOutputLemma = document.getElementById("output-lemma");
 const buttonDecline = document.getElementById("decline");
 const textareaOutput = document.getElementById("textarea-output");
@@ -283,6 +284,7 @@ const generateSelectDeclensionsTable = () => {
 
 const decline = () => {
     const countLemmata = tbody.children.length;
+    const includeStressedEndings = tickboxIncludeStressedEndings.checked;
     let declinedForms = [];
     const pushToDeclinedForms = (form, lemma) => {
         declinedForms.push({Form: form, Lemma: lemma});
@@ -310,10 +312,12 @@ const decline = () => {
             }
         })
 
-        schema["Stressed endings"].map(ending => {
-            const form = `${stem}${ending}`;
-            pushToDeclinedForms(form, lemma);
-        })
+        if (includeStressedEndings) {
+            schema["Stressed endings"].map(ending => {
+                const form = `${stem}${ending}`;
+                pushToDeclinedForms(form, lemma);
+            })
+        }
     }
 
     console.log("declinedForms", declinedForms);
