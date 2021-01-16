@@ -237,7 +237,6 @@ const getPrincipalPartsFromInput = () => {
     }
 
     const principalPartsArray = textareaInput.value.split(/[\s,;\.]+/);
-    console.log(principalPartsArray);
     return principalPartsArray;
 }
 
@@ -260,8 +259,6 @@ const clearInputs = () => {
 
 const generateSelectDeclensionsTable = () => {
     const principalPartsArray = getPrincipalPartsFromInput();
-    const descriptions = getDescriptionsFromSchemata();
-    console.log(descriptions);
 
     let innerHtml = "";
     principalPartsArray.map(principalPart => {
@@ -320,7 +317,7 @@ const decline = () => {
         }
     }
 
-    console.log("declinedForms", declinedForms);
+    //console.log("declinedForms", declinedForms);
 
     if (tickboxOutputLemma.checked) {
         textareaOutput.value = declinedForms.map(object=>`${object.Form}\t${object.Lemma}`).join("\n");
