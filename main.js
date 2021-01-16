@@ -12,7 +12,7 @@ const textareaOutput = document.getElementById("textarea-output");
 const textByCopyToClipboard = document.getElementById("text-by-copy-to-clipboard");
 const buttonCopyToClipboard = document.getElementById("copy-to-clipboard");
 
-const sampleData = "terra Ariadnē corvus cerebrum fīlius officium avis cōnsul amor/amōris genus/generis animal/animālis manus/manūs cornū diēs probus[adj] tenāx/tenācis[adj]";
+const sampleData = "terra Ariadnē corvus cerebrum fīlius officium puer avis cōnsul amor/amōris genus/generis animal/animālis manus/manūs cornū diēs probus[adj] signifer[adj] tenāx/tenācis[adj] probē tenāciter cōnstanter libenter";
 
 const schemata = [
     {
