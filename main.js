@@ -7,6 +7,7 @@ const tbody = document.getElementById("tbody");
 const declensionsDataList = document.getElementById("declension-descriptions");
 const textBySelectDeclensions = document.getElementById("text-by-select-declensions");
 const tickboxIncludeStressedEndings = document.getElementById("include-stressed-endings");
+const tickboxCombineLemmata = document.getElementById("combine-lemmata");
 const tickboxOutputLemma = document.getElementById("output-lemma");
 const buttonDecline = document.getElementById("decline");
 const textareaOutput = document.getElementById("textarea-output");
@@ -408,6 +409,19 @@ const generateFormObjectsWithLemmataArrays = (arrayOfFormObjects) => {
     return output;
 }
 
+//// Does not perform any duplicate checks.
+//// Eg, [{Form: "a", Lemma: "b"}, {Form: "a", Lemma: "c"}] => [{Form: "a", Lemmata ["b"]}, {Form: "a", Lemmata: ["c"]}]
+const convertFormLemmaObjectsToFormLemmataObjects = (arrayOfFormObjects) => {
+    let output = [];
+    arrayOfFormObjects.forEach(inputObject => {
+        output.push({
+            Form: inputObject.Form,
+            Lemmata: [ inputObject.Lemma ]
+        });
+    })
+    return output;
+}
+
 //// Input should be an array of objects like {Form: "a", Lemmata: ["b", "c"]}
 const displayDeclinedOutput = (arrayOfFormObjects) => {
     const getDisplayString = tickboxOutputLemma.checked
@@ -458,7 +472,11 @@ const decline = () => {
     }
 
     //console.log("declinedForms", declinedForms);
-    const objectsWithLemmataArrays = generateFormObjectsWithLemmataArrays(removeDuplicateFormLemmaObjects(declinedForms));
+    const noDuplicates = removeDuplicateFormLemmaObjects(declinedForms);
+
+    const objectsWithLemmataArrays = tickboxCombineLemmata.checked
+                                    ? generateFormObjectsWithLemmataArrays(noDuplicates)
+                                    : convertFormLemmaObjectsToFormLemmataObjects(noDuplicates);
     displayDeclinedOutput(objectsWithLemmataArrays);
 }
 
