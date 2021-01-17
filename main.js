@@ -290,10 +290,12 @@ const getStemFromPrincipalParts = (principalParts, principalPartEnding) => {
     output = getSubstringBeforeRoundBracket(output);
 
     //// If `output` ends with the ending, remove the ending.
-    output = getSubstringBeforeTerminator(output, principalPartEnding);
+    if (output.endsWith(principalPartEnding)) {
+        output = output.substr(0, output.length - principalPartEnding.length);
+    }
 
     //// Handle 4th declension nouns in -us/-ūs correctly.
-    if (principalPartEnding === "ūs" && output.endsWith("us")) {
+    else if (principalPartEnding === "ūs" && output.endsWith("us")) {
         return output.substr(0, output.length - 2);
     }
     return output;
