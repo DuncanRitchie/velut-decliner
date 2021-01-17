@@ -362,14 +362,41 @@ const generateSelectDeclensionsTable = () => {
     announceDeclensionsTable();
 }
 
+//// If given an array of objects with Form and Lemma string fields, this returns the array with all the lemmata for each distinct Form combined into a Lemmata array for each object.
+//// Eg, [{Form: "a", Lemma: "b"}, {Form: "a", Lemma: "c"}] => [{Form: "a", Lemmata ["b", "c"]}]
+const generateFormObjectsWithLemmataArrays = (arrayOfFormObjects) => {
+    let output = [];
+
+    arrayOfFormObjects.forEach(inputObject => {
+        //// Look for a match for `inputObject` in `output`.
+        let matchAlreadyInOutput = output.find(outputObject => {
+            return outputObject.Form === inputObject.Form; 
+        })
+        //// If there’s a match, add the new lemma to the match’s array of lemmata.
+        if (matchAlreadyInOutput) {
+            matchAlreadyInOutput.Lemmata.push(inputObject.Lemma);
+        }
+        //// If there’s no match, add a new object to `output` for the new form.
+        else {
+            output.push({
+                Form: inputObject.Form,
+                Lemmata: [ inputObject.Lemma ],
+            })
+        }
+    })
+
+    return output;
+}
+
+//// Input should be an array of objects like {Form: "a", Lemmata: ["b", "c"]}
 const displayDeclinedOutput = (arrayOfFormObjects) => {
     const getDisplayString = tickboxOutputLemma.checked
-                            ? object => `${object.Form}\t${object.Lemma}`
+                            ? object => `${object.Form}\t${object.Lemmata.join(" ")}`
                             : object => `${object.Form}`;
     
     textareaOutput.value = arrayOfFormObjects
-            .map(getDisplayString)
-            .join("\n");
+        .map(getDisplayString)
+        .join("\n");
 }
 
 const decline = () => {
@@ -411,8 +438,8 @@ const decline = () => {
     }
 
     //console.log("declinedForms", declinedForms);
-
-    displayDeclinedOutput(declinedForms);
+    const objectsWithLemmataArrays = generateFormObjectsWithLemmataArrays(declinedForms);
+    displayDeclinedOutput(objectsWithLemmataArrays);
 }
 
 const clearTextMessages = () => {
