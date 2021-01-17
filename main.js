@@ -317,7 +317,9 @@ const getPrincipalPartsFromInput = () => {
         return [];
     }
 
-    const principalPartsArray = textareaInput.value.split(/[\s,;\.]+/);
+    const principalPartsArray = textareaInput.value
+        .split(/[\s,;\.]+/)
+        .filter(string => { return string !== ""; });
     return principalPartsArray;
 }
 
