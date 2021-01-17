@@ -362,6 +362,26 @@ const generateSelectDeclensionsTable = () => {
     announceDeclensionsTable();
 }
 
+//// Removes duplicates from an array of objects, assuming each object has a Form and a Lemma string field.
+const removeDuplicateFormLemmaObjects = (arrayOfFormObjects) => {
+    let output = [];
+
+    arrayOfFormObjects.forEach(inputObject => {
+        //// If any object in the input does not already exist in `output`, we add it.
+        const matchInOutput = output.find(outputObject => {
+            return (
+                outputObject.Form === inputObject.Form
+                && outputObject.Lemma === inputObject.Lemma
+            );
+        })
+        if (!matchInOutput) {
+            output.push(inputObject);
+        }
+    })
+
+    return output;
+}
+
 //// If given an array of objects with Form and Lemma string fields, this returns the array with all the lemmata for each distinct Form combined into a Lemmata array for each object.
 //// Eg, [{Form: "a", Lemma: "b"}, {Form: "a", Lemma: "c"}] => [{Form: "a", Lemmata ["b", "c"]}]
 const generateFormObjectsWithLemmataArrays = (arrayOfFormObjects) => {
@@ -438,7 +458,7 @@ const decline = () => {
     }
 
     //console.log("declinedForms", declinedForms);
-    const objectsWithLemmataArrays = generateFormObjectsWithLemmataArrays(declinedForms);
+    const objectsWithLemmataArrays = generateFormObjectsWithLemmataArrays(removeDuplicateFormLemmaObjects(declinedForms));
     displayDeclinedOutput(objectsWithLemmataArrays);
 }
 
