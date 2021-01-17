@@ -362,6 +362,16 @@ const generateSelectDeclensionsTable = () => {
     announceDeclensionsTable();
 }
 
+const displayDeclinedOutput = (arrayOfFormObjects) => {
+    const getDisplayString = tickboxOutputLemma.checked
+                            ? object => `${object.Form}\t${object.Lemma}`
+                            : object => `${object.Form}`;
+    
+    textareaOutput.value = arrayOfFormObjects
+            .map(getDisplayString)
+            .join("\n");
+}
+
 const decline = () => {
     const countLemmata = tbody.children.length;
     const includeStressedEndings = tickboxIncludeStressedEndings.checked;
@@ -402,12 +412,7 @@ const decline = () => {
 
     //console.log("declinedForms", declinedForms);
 
-    if (tickboxOutputLemma.checked) {
-        textareaOutput.value = declinedForms.map(object=>`${object.Form}\t${object.Lemma}`).join("\n");
-    }
-    else {
-        textareaOutput.value = declinedForms.map(object=>`${object.Form}`).join("\n");
-    }
+    displayDeclinedOutput(declinedForms);
 }
 
 const clearTextMessages = () => {
