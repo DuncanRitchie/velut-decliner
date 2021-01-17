@@ -258,21 +258,25 @@ const getSubstringAfterTerminator = (string, terminator) => {
 //// Eg, "probē(adv)" => "adv"
 //// Eg, "amīcus[adj]" => "adj"
 //// Eg, "tenāciter" => ""
-const getTextInBrackets = (stringPerhapsContainingBrackets) => {
-    let output = stringPerhapsContainingBrackets;
-    output = getSubstringAfterTerminator(output, "[");
-    output = getSubstringAfterTerminator(output, "(");
-    output = getSubstringBeforeTerminator(output, "]");
-    output = getSubstringBeforeTerminator(output, ")");
-
-    const paramWithoutBrackets = stringPerhapsContainingBrackets.replace(/[\[\]\(\)]/g, "");
-
-    if (output === paramWithoutBrackets) {
+const getTextInBrackets = (inputString) => {
+    //// Return the empty string if input doesn’t contain brackets.
+    if (!inputString.includes("[")
+     && !inputString.includes("(")) {
         return "";
     }
-    else {
-        return output;
+    //// Otherwise, we remove text before and after brackets.
+    let output = inputString;
+
+    if (output.includes("[")) {
+        output = output.substr(output.indexOf("[") + 1);
+        output = getSubstringBeforeTerminator(output, "]");
     }
+    else if (output.includes("(")) {
+        output = output.substr(output.indexOf("(") + 1);
+        output = getSubstringBeforeTerminator(output, ")");
+    }
+
+    return output;
 }
 
 //// ("amor/amōris", "is") => "amōr"
