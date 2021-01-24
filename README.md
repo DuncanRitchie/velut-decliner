@@ -9,6 +9,8 @@ If you’re interested in Latin vocabulary though, you should definitely take a 
 
 More details are in the “[About](https://velut-decliner.netlify.app/#about)” section of the page.
 
+For a similar webpage dealing with verbs, see [Latin conjugations for velut](https://github.com/DuncanRitchie/velut-conjugator).
+
 ------
 
 * My personal website: www.duncanritchie.co.uk
