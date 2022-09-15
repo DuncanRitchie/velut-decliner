@@ -3,6 +3,10 @@ h1 ~ h2 {
     font-size: 1.25rem;
 }
 
+div {
+    text-align: right;
+}
+
 textarea, td input {
     font-size: 0.75rem;
     font-family: "Monaco", "Consolas", monospace;
@@ -25,6 +29,10 @@ td input {
 #tickboxes-wrapper {
     display: flex;
     flex-wrap: wrap;
+}
+
+#tickboxes-wrapper div {
+    min-height: 2rem;
 }
 
 input[type="checkbox"] {
