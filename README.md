@@ -1,4 +1,4 @@
-# Latin declensions for velut
+# Latin declensions for velut (obsolete)
 [velut-decliner.netlify.app](https://velut-decliner.netlify.app)
 
 Webpage that generates inflected forms of Latin nouns, adjectives, and adverbs.
