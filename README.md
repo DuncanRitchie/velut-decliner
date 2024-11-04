@@ -1,5 +1,5 @@
 # Latin declensions for velut (obsolete)
-[www.duncanritchie.co.uk/www.duncanritchie.co.uk/velut-decliner](https://velut-decliner)
+[www.duncanritchie.co.uk/velut-decliner](https://www.duncanritchie.co.uk/velut-decliner)
 
 Webpage that generates inflected forms of Latin nouns, adjectives, and adverbs.
 Superseded by my [Inflector](https://github.com/DuncanRitchie/velut-inflector).
