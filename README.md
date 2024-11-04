@@ -1,5 +1,5 @@
 # Latin declensions for velut (obsolete)
-[velut-decliner.netlify.app](https://velut-decliner.netlify.app)
+[www.duncanritchie.co.uk/www.duncanritchie.co.uk/velut-decliner](https://velut-decliner)
 
 Webpage that generates inflected forms of Latin nouns, adjectives, and adverbs.
 Superseded by my [Inflector](https://github.com/DuncanRitchie/velut-inflector).
@@ -14,7 +14,7 @@ If you’re interested in Latin vocabulary though, you should definitely take a 
 This declensions webpage exists because I review all words before adding them to velut, and this process was made faster by generating forms using this webpage.
 But now I use the Inflector.
 
-More details are in the “[About](https://velut-decliner.netlify.app/#about)” section of the page.
+More details are in the “[About](https://www.duncanritchie.co.uk/velut-decliner/#about)” section of the page.
 
 For a similar (and also obsolete) webpage dealing with verbs, see [Latin conjugations for velut](https://github.com/DuncanRitchie/velut-conjugator).
 
